@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android USB Debug Mode</string>
-    <string name="title">USB デバッグ切替テスト</string>
-    <string name="description">ADB から WRITE_SECURE_SETTINGS を付与したあとに、ADB_ENABLED の更新を試すための検証アプリです。</string>
+    <string name="title">USB デバッグ切替</string>
+    <string name="status_section_title">現在の状態</string>
+    <string name="action_section_title">操作</string>
     <string name="permission_label">WRITE_SECURE_SETTINGS</string>
-    <string name="readback_label">ADB_ENABLED 読み取り値</string>
-    <string name="note_label">メモ</string>
+    <string name="adb_enabled_label">ADB_ENABLED</string>
     <string name="result_label">実行結果</string>
     <string name="result_initial">まだ操作していません。</string>
-    <string name="refresh_button">状態を再読込</string>
-    <string name="enable_button">USB デバッグを ON にする</string>
-    <string name="disable_button">USB デバッグを OFF にする</string>
-    <string name="open_developer_options_button">開発者向けオプションを開く</string>
+    <string name="refresh_button">再読込</string>
+    <string name="debug_toggle_label">USB デバッグ</string>
+    <string name="open_developer_options_button">開発者向けオプション</string>
+    <string name="qs_tile_label">USB デバッグ</string>
+    <string name="qs_tile_enabled">ON</string>
+    <string name="qs_tile_disabled">OFF</string>
+    <string name="qs_tile_permission_missing">権限なし</string>
+    <string name="status_pending">状態を確認中</string>
+    <string name="status_ready">操作可能</string>
+    <string name="status_permission_missing">権限付与待ち</string>
+    <string name="permission_granted">付与済み</string>
+    <string name="permission_missing">未付与</string>
+    <string name="readback_unknown">不明</string>
 </resources>

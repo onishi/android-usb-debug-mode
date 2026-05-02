@@ -53,6 +53,8 @@ class UsbDebugController(
 
     fun adbEnabledValue(enabled: Boolean): Int = if (enabled) 1 else 0
 
+    fun nextEnabledState(currentValue: Int?): Boolean = currentValue != 1
+
     fun hasWriteSecureSettingsPermission(): Boolean {
         return settingsAccess.hasWriteSecureSettingsPermission()
     }

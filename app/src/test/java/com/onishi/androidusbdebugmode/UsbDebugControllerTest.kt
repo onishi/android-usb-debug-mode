@@ -20,6 +20,20 @@ class UsbDebugControllerTest {
     }
 
     @Test
+    fun `nextEnabledState returns false when current value is 1`() {
+        val controller = UsbDebugController(FakeSettingsAccess(permissionGranted = true))
+
+        assertEquals(false, controller.nextEnabledState(currentValue = 1))
+    }
+
+    @Test
+    fun `nextEnabledState returns true when current value is 0`() {
+        val controller = UsbDebugController(FakeSettingsAccess(permissionGranted = true))
+
+        assertEquals(true, controller.nextEnabledState(currentValue = 0))
+    }
+
+    @Test
     fun `setUsbDebugging fails when permission is missing`() {
         val controller = UsbDebugController(
             settingsAccess = FakeSettingsAccess(permissionGranted = false),
