@@ -12,7 +12,6 @@
     <color name="ink_500">#6A7178</color>
     <color name="card_stroke">#D7D1C9</color>
     <color name="status_neutral_bg">#E8E4DE</color>
-    <color name="result_neutral">#F8F5F0</color>
     <color name="warn_600">#C96B1B</color>
     <color name="warn_700">#9A4E0A</color>
 </resources>

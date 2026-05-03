@@ -6,8 +6,6 @@
     <string name="action_section_title">操作</string>
     <string name="permission_label">WRITE_SECURE_SETTINGS</string>
     <string name="adb_enabled_label">ADB_ENABLED</string>
-    <string name="result_label">実行結果</string>
-    <string name="result_initial">まだ操作していません。</string>
     <string name="refresh_button">再読込</string>
     <string name="debug_toggle_label">USB デバッグ</string>
     <string name="open_developer_options_button">開発者向けオプション</string>

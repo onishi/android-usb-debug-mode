@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
 
 class MainActivity : AppCompatActivity() {
@@ -16,9 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var overallStatusValueView: TextView
     private lateinit var permissionValueView: TextView
     private lateinit var readbackValueView: TextView
-    private lateinit var resultValueView: TextView
     private lateinit var debugToggle: MaterialSwitch
-    private lateinit var resultCardView: MaterialCardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         overallStatusValueView = findViewById(R.id.overallStatusValue)
         permissionValueView = findViewById(R.id.permissionValue)
         readbackValueView = findViewById(R.id.readbackValue)
-        resultValueView = findViewById(R.id.resultValue)
-        resultCardView = findViewById(R.id.resultCard)
         debugToggle = findViewById(R.id.debugToggle)
 
         findViewById<Button>(R.id.refreshButton).setOnClickListener {
@@ -46,10 +42,7 @@ class MainActivity : AppCompatActivity() {
             runCatching {
                 startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
             }.onFailure {
-                updateResultCard(
-                    message = "開発者向けオプションを開けませんでした。",
-                    isSuccess = false,
-                )
+                showMessage("開発者向けオプションを開けませんでした。")
             }
         }
         findViewById<Button>(R.id.openDeveloperOptionsButton).setOnClickListener { openDeveloperOptions() }
@@ -90,18 +83,16 @@ class MainActivity : AppCompatActivity() {
     private fun applyToggle(enabled: Boolean) {
         val result = controller.setUsbDebugging(enabled)
         when (result) {
-            is ToggleResult.Success -> updateResultCard(result.message, isSuccess = true)
+            is ToggleResult.Success -> showMessage(result.message)
             is ToggleResult.Failure -> {
                 debugToggle.isChecked = !enabled
-                updateResultCard(result.message, isSuccess = false)
+                showMessage(result.message)
             }
         }
         renderStatus()
     }
 
-    private fun updateResultCard(message: String, isSuccess: Boolean) {
-        resultValueView.text = message
-        resultCardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.result_neutral))
-        resultValueView.setTextColor(ContextCompat.getColor(this, R.color.ink_900))
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
