@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- WRITE_SECURE_SETTINGS は adb の pm grant で付与する前提のため許容する -->
+    <issue id="ProtectedPermissions">
+        <ignore path="src/main/AndroidManifest.xml" />
+    </issue>
+</lint>
