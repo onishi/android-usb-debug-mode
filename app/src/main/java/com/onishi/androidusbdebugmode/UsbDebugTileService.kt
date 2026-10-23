@@ -1,5 +1,6 @@
 package com.onishi.androidusbdebugmode
 
+import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 
@@ -32,10 +33,12 @@ class UsbDebugTileService : TileService() {
         val status = controller.loadStatus()
 
         tile.label = getString(R.string.qs_tile_label)
-        tile.subtitle = when {
-            !status.hasWriteSecureSettingsPermission -> getString(R.string.qs_tile_permission_missing)
-            status.adbEnabledReadback == 1 -> getString(R.string.qs_tile_enabled)
-            else -> getString(R.string.qs_tile_disabled)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            tile.subtitle = when {
+                !status.hasWriteSecureSettingsPermission -> getString(R.string.qs_tile_permission_missing)
+                status.adbEnabledReadback == 1 -> getString(R.string.qs_tile_enabled)
+                else -> getString(R.string.qs_tile_disabled)
+            }
         }
         tile.state = when {
             !status.hasWriteSecureSettingsPermission -> Tile.STATE_UNAVAILABLE
